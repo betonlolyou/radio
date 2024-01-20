@@ -1,10 +1,15 @@
 package ru.netology.stats;
 
 public class Radio {
-    public int currentRadioStation; ///текущая радиостанция
+    private int currentRadioStation; ///текущая радиостанция
+    private int currentVolume; ///текущая громкость
 
     public int getCurrentRadioStation() { ///получение текущей радиостанции
         return currentRadioStation;
+    }
+
+    public int getCurrentVolume() { ///получение текущей громкости
+        return currentVolume;
     }
 
     public void setCurrentRadioStation(int newCurrentRadioStation) { ///установка текущей радиостанции напрямую
@@ -17,27 +22,7 @@ public class Radio {
         currentRadioStation = newCurrentRadioStation;
     }
 
-    public void next() { ///переключить радиостанцию на 1 вперед
-        if (currentRadioStation < 9) {
-            currentRadioStation = currentRadioStation + 1;
-        } else
-            currentRadioStation = 0;
-    }
-
-    public void prev() { ///переключить радиостанцию на 1 назад
-        if (currentRadioStation > 0) {
-            currentRadioStation = currentRadioStation - 1;
-        } else
-            currentRadioStation = 9;
-    }
-
-    public int currentVolume; ///текущая громкость
-
-    public int getCurrentVolume() { ///получение текущей громкости
-        return currentVolume;
-    }
-
-   public void setCurrentVolume(int newCurrentVolume) { ///установка текущей громкости напрямую
+    public void setCurrentVolume(int newCurrentVolume) { ///установка текущей громкости напрямую
         if (newCurrentVolume < 0) {
             return;
         }
@@ -45,6 +30,22 @@ public class Radio {
             return;
         }
         currentVolume = newCurrentVolume;
+    }
+
+    public void next() { ///переключить радиостанцию на 1 вперед
+        if (currentRadioStation < 9) {
+            currentRadioStation = currentRadioStation + 1;
+        } else {
+            currentRadioStation = 0;
+        }
+    }
+
+    public void prev() { ///переключить радиостанцию на 1 назад
+        if (currentRadioStation > 0) {
+            currentRadioStation = currentRadioStation - 1;
+        } else {
+            currentRadioStation = 9;
+        }
     }
 
     public void increaseVolume() { ///увеличить громкость на 1
