@@ -3,6 +3,15 @@ package ru.netology.stats;
 public class Radio {
     private int currentRadioStation; ///текущая радиостанция
     private int currentVolume; ///текущая громкость
+    private int numberOfStations; /// количество радиостанций
+
+    public Radio() {
+        this.numberOfStations = 10; /// по умолчанию 10 станций
+    }
+
+    public Radio(int numberOfStations) {
+        this.numberOfStations = numberOfStations; /// для задания количества станций
+    }
 
     public int getCurrentRadioStation() { ///получение текущей радиостанции
         return currentRadioStation;
@@ -12,11 +21,15 @@ public class Radio {
         return currentVolume;
     }
 
+    public int getNumberOfStations() {
+        return numberOfStations;
+    }
+
     public void setCurrentRadioStation(int newCurrentRadioStation) { ///установка текущей радиостанции напрямую
         if (newCurrentRadioStation < 0) {
             return;
         }
-        if (newCurrentRadioStation > 9) {
+        if (newCurrentRadioStation > (numberOfStations - 1)) {
             return;
         }
         currentRadioStation = newCurrentRadioStation;
@@ -33,7 +46,7 @@ public class Radio {
     }
 
     public void next() { ///переключить радиостанцию на 1 вперед
-        if (currentRadioStation < 9) {
+        if (currentRadioStation < (numberOfStations - 1)) {
             currentRadioStation = currentRadioStation + 1;
         } else {
             currentRadioStation = 0;
@@ -44,7 +57,7 @@ public class Radio {
         if (currentRadioStation > 0) {
             currentRadioStation = currentRadioStation - 1;
         } else {
-            currentRadioStation = 9;
+            currentRadioStation = numberOfStations - 1;
         }
     }
 

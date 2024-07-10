@@ -6,6 +6,76 @@ import org.junit.jupiter.api.Test;
 public class RadioTest {
 
     @Test
+    public void shouldCreateRadioWithDefaultNumberOfStations() {
+        Radio rad = new Radio();
+
+        int expected = 10;
+        int actual = rad.getNumberOfStations();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldCreateRadioWithCustomNumberOfStations() {
+        Radio rad = new Radio(20);
+
+        int expected = 20;
+        int actual = rad.getNumberOfStations();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldDoNextButtonLastStationIfItsLastStationCustomStations() {
+        Radio rad = new Radio(15);
+        rad.setCurrentRadioStation(14);
+
+        rad.next();
+
+        int expected = 0;
+        int actual = rad.getCurrentRadioStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldDoPrevButtonFirstStationIfItsFirstStationCustomStations() {
+        Radio rad = new Radio(15);
+        rad.setCurrentRadioStation(0);
+
+        rad.prev();
+
+        int expected = 14;
+        int actual = rad.getCurrentRadioStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldNotSetRadioStationAboveCustomMax() {
+        Radio rad = new Radio(15);
+
+        rad.setCurrentRadioStation(15);
+
+        int expected = 0;
+        int actual = rad.getCurrentRadioStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldNotSetRadioStationBelowMin() {
+        Radio rad = new Radio(15);
+
+        rad.setCurrentRadioStation(-1);
+
+        int expected = 0;
+        int actual = rad.getCurrentRadioStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
     public void shouldSetRadioStation() {
         Radio rad = new Radio();
 
@@ -14,7 +84,7 @@ public class RadioTest {
         int expected = 9;
         int actual = rad.getCurrentRadioStation();
 
-       Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual);
     }
 
     @Test
